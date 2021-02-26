@@ -1,0 +1,16 @@
+name: magnum-dashboard
+summary: Openstack Magnum Dashboard
+maintainer: Marius Oprin<moprin@cloudbasesolutions.com>
+description: |
+   This is the dashboard for the OpenStack COE service, Magnum.
+tags:
+- openstack
+series:
+- bionic
+- focal
+- groovy
+subordinate: true
+requires:
+  dashboard:
+    interface: dashboard-plugin
+    scope: container

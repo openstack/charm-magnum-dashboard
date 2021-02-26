@@ -1,0 +1,17 @@
+includes:
+  - layer:openstack
+  - interface:dashboard-plugin
+options:
+  basic:
+    use_venv: True
+    include_system_packages: False
+repo: https://github.com/openstack/charm-magnum-dashboard
+config:
+  deletes:
+    - debug
+    - verbose
+    - use-internal-endpoints
+    - use-syslog
+    - ssl_ca
+    - ssl_cert
+    - ssl_key
