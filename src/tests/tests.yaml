@@ -1,0 +1,21 @@
+charm_name: magnum-dashboard
+smoke_bundles:
+- focal-victoria
+
+gate_bundles:
+- bionic-ussuri
+- focal-ussuri
+- focal-victoria
+
+comment:
+target_deploy_status:
+  vault:
+    workload-status: blocked
+    workload-status-message: Vault needs to be initialized
+configure:
+- zaza.charm_tests.noop.setup.basic_setup
+tests:
+- zaza.charm_tests.noop.tests.NoopTest
+tests_options:
+  force_deploy:
+    - focal-victoria
