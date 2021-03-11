@@ -19,7 +19,7 @@ import charms_openstack.charm
 
 class MagnumDashboardCharm(charms_openstack.charm.OpenStackCharm):
     release = 'rocky'
-    name = 'octavia-dashboard'
+    name = 'magnum-dashboard'
     packages = ['python3-magnum-ui']
     python_version = 3
     adapters_class = charms_openstack.adapters.OpenStackRelationAdapters
@@ -27,7 +27,8 @@ class MagnumDashboardCharm(charms_openstack.charm.OpenStackCharm):
 
     def enable_ui_plugin(self):
         source = '/etc/openstack-dashboard/enabled'
-        destination = '/usr/lib/python3/dist-packages/openstack_dashboard/local/enabled'
+        destination = \
+            '/usr/lib/python3/dist-packages/openstack_dashboard/local/enabled'
         for filename in os.listdir(source):
             if "container_infra" in filename:
                 src = os.path.join(source, filename)
