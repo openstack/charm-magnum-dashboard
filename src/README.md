@@ -6,7 +6,7 @@ This subordinate charm provides the Magnum Dashboard plugin for use with the Ope
 
 Example minimal deploy:
 
-    juju deploy magnum-dashboard --config openstack-origin=cloud:bionic-ussuri
+    juju deploy openstack-dashboard --config openstack-origin=cloud:bionic-ussuri
     juju deploy magnum-dashboard
     juju add-relation \
         openstack-dashboard:dashboard-plugin magnum-dashboard:dashboard
