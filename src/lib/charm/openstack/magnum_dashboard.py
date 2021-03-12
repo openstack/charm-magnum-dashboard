@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+import glob
 import os
 
 import charms_openstack.adapters
@@ -29,8 +31,12 @@ class MagnumDashboardCharm(charms_openstack.charm.OpenStackCharm):
         source = '/etc/openstack-dashboard/enabled'
         destination = \
             '/usr/lib/python3/dist-packages/openstack_dashboard/local/enabled'
-        for filename in os.listdir(source):
-            if "container_infra" in filename:
-                src = os.path.join(source, filename)
-                dst = os.path.join(destination, filename)
-                os.symlink(src, dst)
+        plugin_files = glob.glob('{}/*_container_infra_*.py'.format(source))
+        for plugin_file in plugin_files:
+            dest_file = os.path.join(
+                destination, os.path.basename(plugin_file))
+            try:
+                os.symlink(plugin_file, dest_file)
+            except FileExistsError:
+                # plugin file is already enabled
+                continue
