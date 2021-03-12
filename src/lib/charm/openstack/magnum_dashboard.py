@@ -20,7 +20,7 @@ import charms_openstack.charm
 
 
 class MagnumDashboardCharm(charms_openstack.charm.OpenStackCharm):
-    release = 'rocky'
+    release = 'ussuri'
     name = 'magnum-dashboard'
     packages = ['python3-magnum-ui']
     python_version = 3
