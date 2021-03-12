@@ -5,6 +5,7 @@ smoke_bundles:
 gate_bundles:
 - focal-ussuri
 - focal-victoria
+- groovy-victoria
 
 target_deploy_status: {}
 
@@ -16,4 +17,4 @@ tests:
 
 tests_options:
   force_deploy:
-    - focal-victoria
+    - groovy-victoria
