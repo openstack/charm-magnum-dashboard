@@ -3,6 +3,7 @@ smoke_bundles:
 - focal-victoria
 
 gate_bundles:
+- bionic-ussuri
 - focal-ussuri
 - focal-victoria
 - groovy-victoria
