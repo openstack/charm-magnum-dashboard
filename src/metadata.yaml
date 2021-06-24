@@ -2,7 +2,7 @@ name: magnum-dashboard
 summary: Openstack Magnum Dashboard
 maintainer: OpenStack Charmers <openstack-charmers@lists.ubuntu.com>
 description: |
-   This is the dashboard for the OpenStack COE service, Magnum.
+  This is the dashboard for the OpenStack COE service, Magnum.
 tags:
 - openstack
 series:
@@ -10,6 +10,7 @@ series:
 - focal
 - groovy
 - hirsute
+- impish
 subordinate: true
 requires:
   dashboard:
