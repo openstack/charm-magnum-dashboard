@@ -16,7 +16,7 @@ machines:
 applications:
 
   percona-cluster:
-    charm: cs:~openstack-charmers-next/percona-cluster
+    charm: cs:~openstack-charmers/percona-cluster
     num_units: 1
     options:
       source: *openstack-origin
@@ -24,37 +24,42 @@ applications:
       innodb-buffer-pool-size: 256M
     to:
       - '0'
+    channel: candidate
 
   rabbitmq-server:
-    charm: cs:~openstack-charmers-next/rabbitmq-server
+    charm: cs:~openstack-charmers/rabbitmq-server
     num_units: 1
     to:
       - '1'
+    channel: candidate
 
   keystone:
-    charm: cs:~openstack-charmers-next/keystone
+    charm: cs:~openstack-charmers/keystone
     num_units: 1
     options:
       openstack-origin: *openstack-origin
     to:
       - '2'
+    channel: candidate
 
   magnum:
-    charm: cs:~openstack-charmers-next/magnum
+    charm: cs:~openstack-charmers/magnum
     num_units: 1
     options:
       openstack-origin: *openstack-origin
       cert-manager-type: x509keypair
     to:
       - '3'
+    channel: candidate
 
   openstack-dashboard:
-    charm: cs:~openstack-charmers-next/openstack-dashboard
+    charm: cs:~openstack-charmers/openstack-dashboard
     num_units: 1
     options:
       openstack-origin: *openstack-origin
     to:
       - '4'
+    channel: candidate
 
   magnum-dashboard:
     charm: ../../../magnum-dashboard
