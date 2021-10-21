@@ -27,14 +27,12 @@ applications:
       innodb-buffer-pool-size: 256M
     to:
       - '0'
-    channel: candidate
 
   rabbitmq-server:
     charm: cs:~openstack-charmers/rabbitmq-server
     num_units: 1
     to:
       - '1'
-    channel: candidate
 
   keystone:
     charm: cs:~openstack-charmers/keystone
@@ -43,7 +41,6 @@ applications:
       openstack-origin: *openstack-origin
     to:
       - '2'
-    channel: candidate
 
   magnum:
     charm: cs:~openstack-charmers/magnum
@@ -53,7 +50,6 @@ applications:
       cert-manager-type: x509keypair
     to:
       - '3'
-    channel: candidate
 
   openstack-dashboard:
     charm: cs:~openstack-charmers/openstack-dashboard
@@ -62,7 +58,6 @@ applications:
       openstack-origin: *openstack-origin
     to:
       - '4'
-    channel: candidate
 
   magnum-dashboard:
     charm: ../../../magnum-dashboard
