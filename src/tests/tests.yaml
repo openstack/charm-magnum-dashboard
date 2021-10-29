@@ -6,7 +6,14 @@ gate_bundles:
 - bionic-ussuri
 - focal-ussuri
 - focal-victoria
-- groovy-victoria
+- focal-wallaby
+- focal-xena
+- hirsute-wallaby
+- impish-xena
+
+dev_bundles:
+- focal-yoga
+- jammy-yoga
 
 target_deploy_status: {}
 
@@ -18,4 +25,6 @@ tests:
 
 tests_options:
   force_deploy:
-    - groovy-victoria
+    - hirsute-wallaby
+    - impish-xena
+    - jammy-yoga
