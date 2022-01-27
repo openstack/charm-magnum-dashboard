@@ -19,7 +19,7 @@ applications:
   # TODO: This needs to be replaced with mysql-innodb-cluster + db routers,
   # once https://bugs.launchpad.net/ubuntu/+source/magnum/+bug/1915734 is fixed.
   percona-cluster:
-    charm: cs:~openstack-charmers-next/percona-cluster
+    charm: ch:percona-cluster
     num_units: 1
     series: bionic
     options:
@@ -27,37 +27,42 @@ applications:
       innodb-buffer-pool-size: 256M
     to:
       - '0'
+    channel: latest/edge
 
   rabbitmq-server:
-    charm: cs:~openstack-charmers-next/rabbitmq-server
+    charm: ch:rabbitmq-server
     num_units: 1
     to:
       - '1'
+    channel: latest/edge
 
   keystone:
-    charm: cs:~openstack-charmers-next/keystone
+    charm: ch:keystone
     num_units: 1
     options:
       openstack-origin: *openstack-origin
     to:
       - '2'
+    channel: latest/edge
 
   magnum:
-    charm: cs:~openstack-charmers-next/magnum
+    charm: ch:magnum
     num_units: 1
     options:
       openstack-origin: *openstack-origin
       cert-manager-type: x509keypair
     to:
       - '3'
+    channel: latest/edge
 
   openstack-dashboard:
-    charm: cs:~openstack-charmers-next/openstack-dashboard
+    charm: ch:openstack-dashboard
     num_units: 1
     options:
       openstack-origin: *openstack-origin
     to:
       - '4'
+    channel: latest/edge
 
   magnum-dashboard:
     charm: ../../../magnum-dashboard

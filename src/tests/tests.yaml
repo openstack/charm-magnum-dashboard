@@ -1,14 +1,9 @@
 charm_name: magnum-dashboard
 smoke_bundles:
-- focal-victoria
+- focal-xena
 
 gate_bundles:
-- bionic-ussuri
-- focal-ussuri
-- focal-victoria
-- focal-wallaby
 - focal-xena
-- hirsute-wallaby
 - impish-xena
 
 dev_bundles:
@@ -25,6 +20,5 @@ tests:
 
 tests_options:
   force_deploy:
-    - hirsute-wallaby
     - impish-xena
     - jammy-yoga
