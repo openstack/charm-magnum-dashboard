@@ -1,6 +1,8 @@
 variables:
   openstack-origin: &openstack-origin cloud:focal-xena
 
+local_overlay_enabled: False
+
 series: focal
 
 comment:
@@ -65,7 +67,7 @@ applications:
     channel: latest/edge
 
   magnum-dashboard:
-    charm: ../../../magnum-dashboard
+    charm: ../../../magnum-dashboard.charm
 
 relations:
 

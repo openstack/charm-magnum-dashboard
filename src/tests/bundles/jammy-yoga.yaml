@@ -1,6 +1,8 @@
 variables:
   openstack-origin: &openstack-origin distro
 
+local_overlay_enabled: False
+
 series: jammy
 
 comment:
@@ -65,7 +67,7 @@ applications:
     channel: latest/edge
 
   magnum-dashboard:
-    charm: ../../../magnum-dashboard
+    charm: ../../../magnum-dashboard.charm
 
 relations:
 
