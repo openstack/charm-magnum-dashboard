@@ -1,12 +1,10 @@
 charm_name: magnum-dashboard
 smoke_bundles:
-- focal-victoria
+  - focal-xena
 
 gate_bundles:
-- bionic-ussuri
-- focal-ussuri
-- focal-victoria
-- groovy-victoria
+  - focal-wallaby
+  - focal-xena
 
 target_deploy_status: {}
 
@@ -15,7 +13,3 @@ configure:
 
 tests:
 - zaza.charm_tests.noop.tests.NoopTest
-
-tests_options:
-  force_deploy:
-    - groovy-victoria
