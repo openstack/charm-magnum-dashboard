@@ -1,13 +1,16 @@
-variables:
-  openstack-origin: &openstack-origin cloud:bionic-ussuri
+local_overlay_enabled: False
 
-series: bionic
+variables:
+  openstack-origin: &openstack-origin cloud:focal-wallaby
+
+series: focal
 
 comment:
 - 'machines section to decide order of deployment. database sooner = faster'
 machines:
   '0':
     constraints: mem=3072M
+    series: bionic
   '1':
   '2':
   '3':
@@ -15,49 +18,56 @@ machines:
 
 applications:
 
+  # TODO: This needs to be replaced with mysql-innodb-cluster + db routers,
+  # once https://bugs.launchpad.net/ubuntu/+source/magnum/+bug/1915734 is fixed.
   percona-cluster:
-    charm: cs:~openstack-charmers/percona-cluster
+    charm: ch:percona-cluster
     num_units: 1
+    series: bionic
     options:
-      source: *openstack-origin
       max-connections: 1000
       innodb-buffer-pool-size: 256M
     to:
       - '0'
+    channel: latest/edge
 
   rabbitmq-server:
-    charm: cs:~openstack-charmers/rabbitmq-server
+    charm: ch:rabbitmq-server
     num_units: 1
     to:
       - '1'
+    channel: 3.8/edge
 
   keystone:
-    charm: cs:~openstack-charmers/keystone
+    charm: ch:keystone
     num_units: 1
     options:
       openstack-origin: *openstack-origin
     to:
       - '2'
+    channel: wallaby/edge
 
   magnum:
-    charm: cs:~openstack-charmers/magnum
+    charm: ch:magnum
     num_units: 1
     options:
       openstack-origin: *openstack-origin
       cert-manager-type: x509keypair
     to:
       - '3'
+    channel: wallaby/edge
 
   openstack-dashboard:
-    charm: cs:~openstack-charmers/openstack-dashboard
+    charm: ch:openstack-dashboard
     num_units: 1
     options:
       openstack-origin: *openstack-origin
     to:
       - '4'
+    channel: wallaby/edge
 
   magnum-dashboard:
-    charm: ../../../magnum-dashboard
+    charm: ../../../magnum-dashboard.charm
 
 relations:
 

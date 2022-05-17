@@ -1,12 +1,9 @@
 - project:
     templates:
-      - charm-unit-jobs
-    check:
-      jobs:
-        - bionic-ussuri
-        - focal-ussuri
-        - focal-victoria
-        - groovy-victoria
+      - charm-unit-jobs-py38
+      - charm-victoria-functional-jobs
+      - charm-wallaby-functional-jobs
     vars:
       needs_charm_build: true
       charm_build_name: magnum-dashboard
+      build_type: charmcraft
