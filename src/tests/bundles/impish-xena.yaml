@@ -36,7 +36,7 @@ applications:
     num_units: 1
     to:
       - '1'
-    channel: latest/edge
+    channel: 3.9/edge
 
   keystone:
     charm: ch:keystone
@@ -45,7 +45,7 @@ applications:
       openstack-origin: *openstack-origin
     to:
       - '2'
-    channel: latest/edge
+    channel: yoga/edge
 
   magnum:
     charm: ch:magnum
@@ -55,7 +55,7 @@ applications:
       cert-manager-type: x509keypair
     to:
       - '3'
-    channel: latest/edge
+    channel: yoga/edge
 
   openstack-dashboard:
     charm: ch:openstack-dashboard
@@ -64,7 +64,7 @@ applications:
       openstack-origin: *openstack-origin
     to:
       - '4'
-    channel: latest/edge
+    channel: yoga/edge
 
   magnum-dashboard:
     charm: ../../../magnum-dashboard.charm
