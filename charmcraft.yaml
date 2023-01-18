@@ -4,11 +4,21 @@ parts:
   charm:
     source: src/
     plugin: reactive
+    reactive-charm-build-arguments:
+      - --binary-wheels-from-source
+    build-packages:
+      - tox
+      - git
+      - python3-dev
+      - libffi-dev
+      - libssl-dev
+      - rustc
+      - cargo
     build-snaps:
-      - charm
+      - charm/latest/stable
     build-environment:
-      - CHARM_INTERFACES_DIR: /root/project/interfaces/
-      - CHARM_LAYERS_DIR: /root/project/layers/
+      - CHARM_INTERFACES_DIR: $CRAFT_PROJECT_DIR/interfaces/
+      - CHARM_LAYERS_DIR: $CRAFT_PROJECT_DIR/layers/
 
 bases:
   - build-on:
