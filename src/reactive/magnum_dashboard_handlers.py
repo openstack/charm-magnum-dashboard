@@ -34,7 +34,7 @@ def dashboard_available():
     with charm.provide_charm_instance() as magnum_dashboard_charm:
         dashboard_relation = reactive.endpoint_from_flag('dashboard.available')
         dashboard_relation.publish_plugin_info(
-            "", None,
+            magnum_dashboard_charm.local_settings, None,
             conflicting_packages=magnum_dashboard_charm.purge_packages,
             install_packages=magnum_dashboard_charm.packages)
         magnum_dashboard_charm.enable_ui_plugin()

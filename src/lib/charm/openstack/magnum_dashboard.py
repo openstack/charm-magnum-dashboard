@@ -26,6 +26,10 @@ class MagnumDashboardCharm(charms_openstack.charm.OpenStackCharm):
     python_version = 3
     adapters_class = charms_openstack.adapters.OpenStackRelationAdapters
     required_relations = ['dashboard']
+    # Use API version 1.9 for magnum (LP: #1998509)
+    local_settings = """
+OPENSTACK_API_VERSIONS['container-infra'] = 1.9
+"""
 
     def enable_ui_plugin(self):
         source = '/etc/openstack-dashboard/enabled'
@@ -40,3 +44,10 @@ class MagnumDashboardCharm(charms_openstack.charm.OpenStackCharm):
             except FileExistsError:
                 # plugin file is already enabled
                 continue
+
+
+class MagnumDashboardCharmXena(MagnumDashboardCharm):
+    release = 'xena'
+    # magnum-ui's default API version is 1.10, there is no need to override it
+    # (LP: #1998509)
+    local_settings = ""
