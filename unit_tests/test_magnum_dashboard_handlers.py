@@ -55,9 +55,10 @@ class TestMagnumDashboardHandlers(test_utils.PatchHelper):
         self.endpoint_from_flag.return_value = mock_flag
         self.magnum_dashboard_charm.purge_packages = ['n1']
         self.magnum_dashboard_charm.packages = ['p1', 'p2']
+        self.magnum_dashboard_charm.local_settings = "FOO = 1"
         handlers.dashboard_available()
         self.magnum_dashboard_charm.enable_ui_plugin.assert_called_once_with()
         self.magnum_dashboard_charm.assess_status.assert_called_once_with()
         mock_flag.publish_plugin_info.assert_called_once_with(
-            "", None, conflicting_packages=['n1'],
+            "FOO = 1", None, conflicting_packages=['n1'],
             install_packages=['p1', 'p2'])
