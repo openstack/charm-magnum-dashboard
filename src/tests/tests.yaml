@@ -1,24 +1,20 @@
 charm_name: magnum-dashboard
 smoke_bundles:
-- jammy-antelope
-
+  - jammy-caracal
 gate_bundles:
-- jammy-antelope
-
+  - jammy-antelope
+  - jammy-bobcat
+  - jammy-caracal
 dev_bundles:
-- jammy-bobcat
-- lunar-antelope
-- mantic-bobcat
-
+  - noble-caracal
 target_deploy_status: {}
 
 configure:
-- zaza.charm_tests.noop.setup.basic_setup
+  - zaza.charm_tests.noop.setup.basic_setup
 
 tests:
-- zaza.charm_tests.noop.tests.NoopTest
+  - zaza.charm_tests.noop.tests.NoopTest
 
 tests_options:
   force_deploy:
-    - lunar-antelope
-    - mantic-bobcat
+    - noble-caracal
