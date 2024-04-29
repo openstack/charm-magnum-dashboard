@@ -10,32 +10,41 @@ comment:
 machines:
   '0':
     constraints: mem=3072M
-    series: bionic
   '1':
+    constraints: mem=3072M
   '2':
+    constraints: mem=3072M
   '3':
   '4':
+  '5':
+  '6':
 
 applications:
 
-  # TODO: This needs to be replaced with mysql-innodb-cluster + db routers,
-  # once https://bugs.launchpad.net/ubuntu/+source/magnum/+bug/1915734 is fixed.
-  percona-cluster:
-    charm: ch:percona-cluster
-    num_units: 1
-    series: bionic
-    options:
-      max-connections: 1000
-      innodb-buffer-pool-size: 256M
+  keystone-mysql-router:
+    charm: ch:mysql-router
+    channel: 8.0/edge
+  magnum-mysql-router:
+    charm: ch:mysql-router
+    channel: 8.0/edge
+  openstack-dashboard-mysql-router:
+    charm: ch:mysql-router
+    channel: 8.0/edge
+
+  mysql-innodb-cluster:
+    charm: ch:mysql-innodb-cluster
+    num_units: 3
     to:
       - '0'
-    channel: latest/edge
+      - '1'
+      - '2'
+    channel: 8.0/edge
 
   rabbitmq-server:
     charm: ch:rabbitmq-server
     num_units: 1
     to:
-      - '1'
+      - '3'
     channel: latest/edge
 
   keystone:
@@ -44,7 +53,7 @@ applications:
     options:
       openstack-origin: *openstack-origin
     to:
-      - '2'
+      - '4'
     channel: 2024.1/edge
 
   magnum:
@@ -54,7 +63,7 @@ applications:
       openstack-origin: *openstack-origin
       cert-manager-type: x509keypair
     to:
-      - '3'
+      - '5'
     channel: 2024.1/edge
 
   openstack-dashboard:
@@ -63,19 +72,23 @@ applications:
     options:
       openstack-origin: *openstack-origin
     to:
-      - '4'
+      - '6'
     channel: 2024.1/edge
 
   magnum-dashboard:
-    charm: ../../../magnum-dashboard.charm
+    charm: ../../../magnum-dashboard_ubuntu-24.04-amd64.charm
 
 relations:
 
   - - 'keystone:shared-db'
-    - 'percona-cluster:shared-db'
+    - 'keystone-mysql-router:shared-db'
+  - - 'keystone-mysql-router:db-router'
+    - 'mysql-innodb-cluster:db-router'
 
   - - 'magnum:shared-db'
-    - 'percona-cluster:shared-db'
+    - 'magnum-mysql-router:shared-db'
+  - - 'magnum-mysql-router:db-router'
+    - 'mysql-innodb-cluster:db-router'
 
   - - 'magnum:amqp'
     - 'rabbitmq-server:amqp'
@@ -84,7 +97,9 @@ relations:
     - 'keystone:identity-service'
 
   - - 'openstack-dashboard:shared-db'
-    - 'percona-cluster:shared-db'
+    - 'openstack-dashboard-mysql-router:shared-db'
+  - - 'openstack-dashboard-mysql-router:db-router'
+    - 'mysql-innodb-cluster:db-router'
 
   - - 'openstack-dashboard:identity-service'
     - 'keystone:identity-service'
