@@ -4,9 +4,10 @@ maintainer: OpenStack Charmers <openstack-charmers@lists.ubuntu.com>
 description: |
   This is the dashboard for the OpenStack COE service, Magnum.
 tags:
-  - openstack
+- openstack
 series:
-  - jammy
+- jammy
+- noble
 subordinate: true
 requires:
   dashboard:
