@@ -76,7 +76,7 @@ applications:
     channel: zed/edge
 
   magnum-dashboard:
-    charm: ../../../magnum-dashboard.charm
+    charm: ../../../magnum-dashboard_ubuntu@22.04-amd64.charm
 
 relations:
   - - 'keystone:shared-db'
