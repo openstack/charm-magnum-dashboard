@@ -76,7 +76,7 @@ applications:
     channel: 2024.1/edge
 
   magnum-dashboard:
-    charm: ../../../magnum-dashboard_ubuntu-24.04-amd64.charm
+    charm: ../../../magnum-dashboard_ubuntu@24.04-amd64.charm
 
 relations:
 

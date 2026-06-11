@@ -2,9 +2,9 @@ type: charm
 
 parts:
   charm:
-    source: src/
     plugin: reactive
     reactive-charm-build-arguments:
+      - --verbose
       - --binary-wheels-from-source
       - --use-lock-file-branches
     build-packages:
@@ -13,8 +13,7 @@ parts:
       - python3-dev
       - libffi-dev
       - libssl-dev
-      - rustc
-      - cargo
+    source: src/
     build-snaps:
       - charm/3.x/stable
     build-environment:
